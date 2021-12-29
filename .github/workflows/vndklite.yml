@@ -31,9 +31,10 @@ jobs:
         run:  |
           mkdir -p /home/runner/downloads/gsi
           mkdir -p /home/runner/gsi
-          wget "https://sabina.amyrom.ml/phhgsis/protonaosp/proton-12.1.0-a1-arm64_bvN-lite.img.zst" -P /home/runner/downloads/gsi/
+          wget -q "https://sabina.amyrom.ml/phhgsis/protonaosp/proton-12.1.0-a1-arm64_bvN-lite.img.zst" -P /home/runner/downloads/gsi/
           cd /home/runner/downloads/gsi
-          7z x proton-12.1.0-a1-arm64_bvN-lite.img.zst" || zstd -v -d proton-12.1.0-a1-arm64_bvN-lite.img.zst --stdout > proton-12.1.0-a1-arm64_bvN-lite.img
+          7z x "proton-12.1.0-a1-arm64_bvN-lite.img.zst" || zstd -v -d proton-12.1.0-a1-arm64_bvN-lite.img.zst --stdout > proton-12.1.0-a1-arm64_bvN-lite.img
+          ls -aAlH *
           rm -f proton-12.1.0-a1-arm64_bvN-lite.img.zst
           xz -k -v -c -9 proton-12.1.0-a1-arm64_bvN-lite.img -T0 > /home/runner/gsi/proton-12.1.0-a1-arm64_bvN-lite.img.xz
 
