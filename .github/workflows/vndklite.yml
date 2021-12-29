@@ -23,7 +23,7 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run:  |
           sudo apt update
-          sudo apt install -y wget zstd xattr simg2img python2 virtualenv android-tools-adb android-tools-fastboot bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lunzip lzop pngcrush schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk python perl git git-lfs libncurses5 xmlstarlet virtualenv xz-utils
+          sudo apt install -y wget zstd zip zlib1g-dev openjdk-8-jdk python perl git git-lfs libncurses5 xmlstarlet virtualenv xz-utils
 
       - name: installing gdown and downloading image
         env:
@@ -33,7 +33,7 @@ jobs:
           mkdir -p /home/runner/gsi
           wget "https://sabina.amyrom.ml/phhgsis/protonaosp/proton-12.1.0-a1-arm64_bvN-lite.img.zst" -P /home/runner/downloads/gsi/
           cd /home/runner/downloads/gsi
-          zstd -v -d proton-12.1.0-a1-arm64_bvN-lite.img.zst
+          zstd -v -d proton-12.1.0-a1-arm64_bvN-lite.img.zst --stdout > proton-12.1.0-a1-arm64_bvN-lite.img
           rm -f proton-12.1.0-a1-arm64_bvN-lite.img.zst
           xz -k -v -c -9 proton-12.1.0-a1-arm64_bvN-lite.img -T0 > /home/runner/gsi/proton-12.1.0-a1-arm64_bvN-lite.img.xz
 
