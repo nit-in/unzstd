@@ -23,7 +23,7 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run:  |
           sudo apt update
-          sudo apt install -y wget zstd zip zlib1g-dev openjdk-8-jdk python perl git git-lfs libncurses5 xmlstarlet virtualenv xz-utils
+          sudo apt install -y wget zstd zip zlib1g-dev openjdk-8-jdk python perl git git-lfs libncurses5 xmlstarlet virtualenv xz-utils p7zip-full
 
       - name: installing gdown and downloading image
         env:
@@ -33,7 +33,7 @@ jobs:
           mkdir -p /home/runner/gsi
           wget "https://sabina.amyrom.ml/phhgsis/protonaosp/proton-12.1.0-a1-arm64_bvN-lite.img.zst" -P /home/runner/downloads/gsi/
           cd /home/runner/downloads/gsi
-          zstd -v -d proton-12.1.0-a1-arm64_bvN-lite.img.zst --stdout > proton-12.1.0-a1-arm64_bvN-lite.img
+          7z x -o"proton-12.1.0-a1-arm64_bvN-lite.img" "proton-12.1.0-a1-arm64_bvN-lite.img.zst" || zstd -v -d proton-12.1.0-a1-arm64_bvN-lite.img.zst --stdout > proton-12.1.0-a1-arm64_bvN-lite.img
           rm -f proton-12.1.0-a1-arm64_bvN-lite.img.zst
           xz -k -v -c -9 proton-12.1.0-a1-arm64_bvN-lite.img -T0 > /home/runner/gsi/proton-12.1.0-a1-arm64_bvN-lite.img.xz
 
