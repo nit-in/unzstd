@@ -40,4 +40,5 @@ jobs:
         with:
           artifacts: "/home/runner/gsi/*.xz"
           token: ${{ secrets.UNS }}
+          tag: "ProtonAOSPv1"
 
